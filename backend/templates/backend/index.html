@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
+</head>
+
+<body>
+ <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
+                <div class="container"><a class="navbar-brand logo" href="#"><b>VTOL</b></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navcol-1">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item item"><a class="nav-link active" href="{% url 'home' %}"><b>HOME</b></a></li>
+                            <li class="nav-item item"><a class="nav-link active" href="{% url 'login' %}"><b>ADMIN</b></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav><!-- End: Header White -->
+               <main class="page landing-page">
+        <section class="clean-block clean-hero" style="background-image:url({% static 'img/tech/image.jpg' %});color:rgba(9, 162, 255, 0.5); ">
+            <div class="text">
+  <center><iframe width="600" height="350"  src="http://192.168.43.202:8080/browserfs.html" frameborder="0" allowfullscreen style="z-index: 3"></iframe></center>
+            </div>
+</section>
+
+
+        <section class="clean-block clean-info dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info">Helpline Numbers<br></h2>
+                    <p>Emergency Rescue Helpline Numbers, Mentioned Below</p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-5 col-xxl-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>Disaster Management System<br></h4>
+                        <p><strong>108</strong><br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>Disaster Management (N.D.M.A)<br></h4>
+                        <p><strong>1078</strong><br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>National Disaster Response Force (NDRF)<br></h4>
+                        <p><strong>011-24363260</strong><br><strong>9711077372</strong><br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>Flood Control Room<br></h4>
+                        <p><strong>080-25573333</strong><br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>State emergency operations centre<br></h4>
+                        <p><strong>080-22340676</strong><br><strong>080-1070</strong><br><strong></strong><br></p>
+                    </div>
+                    <div class="col-md-5 feature-box"><i class="icon-pencil icon"></i>
+                        <h4>State Disaster Response Force (SDRF)<br></h4>
+                        <p><strong>9801598289</strong><br></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <footer class="bg-white">
+
+        <div class="footer-copyright text-center py-3"><b>© 2021 VTOL</b></div>
+
+</footer>
+        </main>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="{% static 'js/script.min.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<html lang="en">
+<head>
+    {% load static %}
+    {{ post|json_script:"post" }}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Font Awesome -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+            rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'templates/backend/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+    <script type="text/javascript" src="{% static 'scripts/backend.js' %}"></script>
+    <script
+            type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"
+    ></script>
+    <title>Admin Panel</title>
+</head>
+<body onload="displayView()"
+      style="background-image: url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg')">
+<div id="upload">
+    <br>
+    <h1 style="box-shadow: gray;color: white;margin: auto;font-weight: bold;text-align: center">Flood
+        prediction</h1>
+    <a href="{% url 'logout' %}" class="btn btn-info btn-lg" style="background: #09a2ff;float: right">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+    <div id="upload1" class="vertical-center" style="text-align: center;">
+        <form method="POST" enctype="multipart/form-data" class="md-form">
+            {% csrf_token %}
+            <p style="font-size: xx-large; font-weight: bold">Select an image</p>
+            <div class="wrapper">
+                <div class="file-upload" onmouseover="icon_color()" onmouseout="icon_color2()">
+                    <input type="file" name="image" multiple required/>
+                    <i id="ic" class="fa fa-arrow-up fa-sm"></i>
+                </div>
+            </div>
+            <p><br>
+                <button class="glow-on-hover" type="submit">Submit</button>
+            </p>
+            <p id="but" style="display: none;text-align: right;">
+                <button  style="float: left" type="button" id="show_img" class="go_back" onclick="toggle()"><span>Show Output Images</span>
+                </button>
+            </p>
+            <p id="ret" style="display: none;text-align: right; padding-right: 30px;">
+                <button type="button" class="btn btn-danger" onclick="reset1()" onmouseover="reseth('1')"
+                        onmouseout="reseth('2')"><i id="reseti" class="fas fa-sync" style="color: white;"></i>
+                    Reset Page
+                </button>
+            </p>
+        </form>
+    </div>
+</div>
+<div id="view" style="display: none; margin: auto;padding: 10px">
+    <div class="col">
+        <div><p
+                style="font-size: xx-large;font-weight: bold;text-align: center;color: white;"><button style="float: left" class="go_back" onclick="toggle()"><span>Go Back</span></button>
+            Prediction Output</p>
+          <!--<hr style="height: 1px">-->
+       </div>
+        <div class="row">
+            <p>
+                
+            </p>
+        </div>
+        <div class="row" style="padding: 5px;">
+            <div class="col">
+                <div class="card h-100">
+                    <img
+                            alt="Original image"
+                            src="{{ imageURL }}"
+                            class="card-img-top hover-shadow"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">Original Image</h5>
+                        <p class="card-text">
+                            Size : {{ height }} x {{ width }} px
+                        </p>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                        <button onclick="download('{{ imageURL }}')" id="b1" class='btn_o'>Download <i
+                                class="fa fa-download"
+                                style="color: #09a2ff"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img
+                            alt="Binary image"
+                            src="{{ bin_image }}"
+                            class="card-img-top hover-shadow"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">Binary Image</h5>
+                        <p class="card-text">
+                            Percentage of Water : {{ bin_water }}%<br>
+                            Percentage of Land : {{ bin_land }}%
+                        </p>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ bin_water }}%"
+                                 aria-valuenow="{{ bin_water }}" aria-valuemin="0" aria-valuemax="100">
+                                Water {{ bin_water }}%
+                            </div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ bin_land }}%"
+                                 aria-valuenow="{{ bin_land }}" aria-valuemin="0" aria-valuemax="100">
+                                Land {{ bin_land }}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                        <button onclick="download('{{ bin_image }}')" id="b2" class='btn_o'>Download <i
+                                class="fa fa-download"
+                                style="color: #09a2ff"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img
+                            alt="Estimated image"
+                            src="{{ est_image }}"
+                            class="card-img-top hover-shadow"
+                    />
+                    <div class="card-body">
+                        <h5 class="card-title">Estimated Image</h5>
+                        <p class="card-text">
+                            Percentage of Water : {{ est_water }} %<br>
+                            Percentage of Land : {{ est_land }} %
+                        </p>
+                        <div class="progress" style="height: 20px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: {{ est_water }}%"
+                                 aria-valuenow="{{ est_water }}" aria-valuemin="0" aria-valuemax="100">
+                                Water {{ est_water }}%
+                            </div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: {{ est_land }}%"
+                                 aria-valuenow="{{ est_land }}" aria-valuemin="0" aria-valuemax="100">
+                                Land {{ est_land }}%
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer" style="text-align: center;">
+                        <button onclick="download('{{ est_image }}')" id="b3" class='btn_o'>Download <i
+                                class="fa fa-download"
+                                style="color: #09a2ff"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
