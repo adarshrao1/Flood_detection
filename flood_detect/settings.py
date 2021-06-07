@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#^_mh9k+5fobx(p7r#@*r60klale$%7w^tf^@bus&-lje^1=(@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://flood-vtol.azurewebsites.net/']
 
 
 # Application definition

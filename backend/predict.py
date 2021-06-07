@@ -27,7 +27,7 @@ def predict(image_path):
     # pathlib.PosixPath = pathlib.WindowsPath
 
     # Load export file
-    learn = load_learner("./model_data/export.pkl")
+    learn = load_learner("/model_data/export.pkl")
 
     # Generate prediction
     predictions = learn.predict(image_path)
