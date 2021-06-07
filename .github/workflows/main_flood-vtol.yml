@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'flood-vtol'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_a9768109475546babdacf0a282b42e74 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_df0a6d7a93d441afbffe0284c97f1c55 }}
