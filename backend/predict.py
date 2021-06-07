@@ -24,7 +24,7 @@ def predict(image_path):
     output = dict()
 
     # Linux pickle file path to windows path
-    pathlib.PosixPath = pathlib.WindowsPath
+    #pathlib.PosixPath = pathlib.WindowsPath
 
     # Load export file
     learn = load_learner("./model_data/export.pkl")
