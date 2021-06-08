@@ -57,14 +57,14 @@ def adminpage(request):
         if form.is_valid():
             image_obj = form.save()
             image_url = image_obj.image.url
-            output = predict(image_url)
+            output = predict("."+image_url)
 
             est_water = output['est_water']
             est_land = output['est_land']
             bin_water = output['bin_water']
             bin_land = output['bin_land']
-            est_image = output['est']
-            bin_image = output['bin']
+            est_image = output['est'][1:]
+            bin_image = output['bin'][1:]
             height = output['height']
             width = output['width']
 
