@@ -1,6 +1,6 @@
 from backend.forms import ImageForm
 from backend.predict import predict
-from django.contrib.auth import authenticate, login , logout
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from backend.forms import CreateUserForm
@@ -14,21 +14,23 @@ def home(request):
     # and return HTML as response
     return render(request, "backend/index.html")
 
+
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
         form = CreateUserForm()
         if request.method == 'POST':
-            form=CreateUserForm(request.POST)
+            form = CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
                 messages.success(request, 'Account was created for ' + user)
                 return redirect('login')
 
-        context = {'form': form }
+        context = {'form': form}
         return render(request, 'backend/registration.html', context)
+
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -57,7 +59,7 @@ def adminpage(request):
         if form.is_valid():
             image_obj = form.save()
             image_url = image_obj.image.url
-            output = predict(image_url)
+            output = predict("." + image_url)
 
             est_water = output['est_water']
             est_land = output['est_land']
@@ -77,6 +79,7 @@ def adminpage(request):
         return render(request, "backend/admin.html", {'form': form, 'post': "No"})
     form = ImageForm
     return render(request, "backend/admin.html", {'form': form, 'post': "No"})
+
 
 def logoutUser(request):
     logout(request)

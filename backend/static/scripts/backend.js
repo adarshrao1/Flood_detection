@@ -67,7 +67,7 @@ function displayView() {
 
 function icon_color() {
     var ax = document.getElementById("ic")
-    ax.style.color = "#2590EB"
+    ax.style.color = "#09A2FF"
 }
 
 function icon_color2() {

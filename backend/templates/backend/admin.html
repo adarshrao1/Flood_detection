@@ -29,14 +29,14 @@
     <title>Admin Panel</title>
 </head>
 <body onload="displayView()"
-      style="background-image: url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg')">
+      style="background-image: linear-gradient(rgba(100,255,100,.5), rgba(255,100,255,.5)), url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg');">
 <div id="upload">
     <br>
     <h1 style="box-shadow: gray;color: white;margin: auto;font-weight: bold;text-align: center">Flood
         prediction</h1>
     <a href="{% url 'logout' %}" class="btn btn-info btn-lg" style="background: #09a2ff;float: right">
-          <span class="glyphicon glyphicon-log-out"></span> Log out
-        </a>
+        <span class="glyphicon glyphicon-log-out"></span> Log out
+    </a>
     <div id="upload1" class="vertical-center" style="text-align: center;">
         <form method="POST" enctype="multipart/form-data" class="md-form">
             {% csrf_token %}
@@ -51,7 +51,7 @@
                 <button class="glow-on-hover" type="submit">Submit</button>
             </p>
             <p id="but" style="display: none;text-align: right;">
-                <button  style="float: left" type="button" id="show_img" class="go_back" onclick="toggle()"><span>Show Output Images</span>
+                <button style="float: left" type="button" id="show_img" class="go_back" onclick="toggle()"><span>Show Output Images</span>
                 </button>
             </p>
             <p id="ret" style="display: none;text-align: right; padding-right: 30px;">
@@ -65,14 +65,17 @@
 </div>
 <div id="view" style="display: none; margin: auto;padding: 10px">
     <div class="col">
-        <div><p
-                style="font-size: xx-large;font-weight: bold;text-align: center;color: white;"><button style="float: left" class="go_back" onclick="toggle()"><span>Go Back</span></button>
-            Prediction Output</p>
-          <!--<hr style="height: 1px">-->
-       </div>
+        <div>
+            <p
+                    style="font-size: xx-large;font-weight: bold;text-align: center;color: white;">
+                <button style="float: left" class="go_back" onclick="toggle()"><span>Go Back</span></button>
+                Prediction Output
+            </p>
+            <!--<hr style="height: 1px">-->
+        </div>
         <div class="row">
             <p>
-                
+
             </p>
         </div>
         <div class="row" style="padding: 5px;">

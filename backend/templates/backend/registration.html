@@ -11,41 +11,40 @@
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap2/css2/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css2/vanilla-zoom.min.css' %}">
     <style>
-        .errorlist
-    {
-        color: #3b99e0;
-    }
+        .errorlist {
+            color: #3b99e0;
+        }
     </style>
 </head>
 
 <body>
-    <main class="page registration-page">
-        <section class="clean-block clean-form dark">
-            <div class="container">
-                <div class="block-heading">
-                    <h2 class="text-info">Registration</h2>
-                </div>
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="mb-3"><label class="form-label" for="">Username</label>
-                        {{form.username}}</div>
-                    <div class="mb-3"><label class="form-label" for="email">Email</label>
-                        {{form.email}}</div>
-                    <div class="mb-3"><label class="form-label" for="password">Password</label>
-                        {{form.password1}}</div>
-                    <div class="mb-3"><label class="form-label" for="password">Confirm Password</label>
-                        {{form.password2}}</div>
-                    <button class="btn btn-primary" type="submit">Sign Up</button>
-                    {{ form.errors }}
-                     <a href="{% url 'login' %}" style="position:relative; left:70px;">Already have an account? Log In</a>
-                </form>
+<main class="page registration-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text-info">Registration</h2>
             </div>
-        </section>
-    </main>
-    <script src="{% static 'bootstrap2/js2/bootstrap.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script src="{% static 'js2/vanilla-zoom.js' %}"></script>
-    <script src="{% static 'js/theme.js' %}"></script>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3"><label class="form-label" for="">Username</label>
+                    {{ form.username }}</div>
+                <div class="mb-3"><label class="form-label" for="email">Email</label>
+                    {{ form.email }}</div>
+                <div class="mb-3"><label class="form-label" for="password">Password</label>
+                    {{ form.password1 }}</div>
+                <div class="mb-3"><label class="form-label" for="password">Confirm Password</label>
+                    {{ form.password2 }}</div>
+                <button class="btn btn-primary" type="submit">Sign Up</button>
+                {{ form.errors }}
+                <a href="{% url 'login' %}" style="position:relative; left:70px;">Already have an account? Log In</a>
+            </form>
+        </div>
+    </section>
+</main>
+<script src="{% static 'bootstrap2/js2/bootstrap.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+<script src="{% static 'js2/vanilla-zoom.js' %}"></script>
+<script src="{% static 'js/theme.js' %}"></script>
 </body>
 
 </html>
