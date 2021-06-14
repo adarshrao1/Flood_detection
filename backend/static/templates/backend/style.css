@@ -284,3 +284,15 @@ i {
         transform: scaleX(1);
     }
 }
+.buttonl {
+    border-radius: 40px;
+    box-shadow: 0 5px 10px -5px gray;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    width: 100px;
+    margin: 5px;
+}

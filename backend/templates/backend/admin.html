@@ -28,7 +28,7 @@
     ></script>
     <title>Admin Panel</title>
 </head>
-<body onload="displayView()"
+<body onload="displayView({{ bin_water }},{{ est_water }})"
       style="background-image: linear-gradient(rgba(100,255,100,.5), rgba(255,100,255,.5)), url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg');">
 <div id="upload">
     <br>
@@ -110,7 +110,9 @@
                         <h5 class="card-title">Binary Image</h5>
                         <p class="card-text">
                             Percentage of Water : {{ bin_water }}%<br>
-                            Percentage of Land : {{ bin_land }}%
+                            Percentage of Land : {{ bin_land }}%<br>
+                            <b>Damage Level : <button class="buttonl" id="bin_but"></button></b>
+
                         </p>
                         <div class="progress" style="height: 20px;">
                             <div class="progress-bar bg-info" role="progressbar" style="width: {{ bin_water }}%"
@@ -141,7 +143,8 @@
                         <h5 class="card-title">Estimated Image</h5>
                         <p class="card-text">
                             Percentage of Water : {{ est_water }} %<br>
-                            Percentage of Land : {{ est_land }} %
+                            Percentage of Land : {{ est_land }} %<br>
+                            <b>Damage Level : <button class="buttonl" id="est_but"></button></b>
                         </p>
                         <div class="progress" style="height: 20px;">
                             <div class="progress-bar bg-info" role="progressbar" style="width: {{ est_water }}%"

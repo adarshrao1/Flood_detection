@@ -1,7 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-
+<script type="text/javascript" src="{% static 'scripts/test.js' %}"></script>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -27,7 +27,8 @@
                <main class="page landing-page">
         <section class="clean-block clean-hero" style="background-image:url({% static 'img/tech/image.jpg' %});color:rgba(9, 162, 255, 0.5); ">
             <div class="text">
-  <center><iframe width="600" height="350"  src="https://192.168.29.244/video" frameborder="0" allowfullscreen style="z-index: 3"></iframe></center>
+  <center><iframe id="camera_view" width="640" height="480"  src="http://192.168.29.244:8080/browserfs.html" frameborder="0" allowfullscreen style="z-index: 3"></iframe></center>
+            <button class="bg-transparent" onclick="switch_cam()">Switch</button>
             </div>
 </section>
 
