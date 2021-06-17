@@ -1,4 +1,4 @@
-function displayView(bin1,est1) {
+function displayView(bin1, est1) {
     var post = JSON.parse(document.getElementById('post').textContent);
     var up = document.getElementById("upload");
     var im = document.getElementById("view");
@@ -9,39 +9,39 @@ function displayView(bin1,est1) {
     if (Cookies.get('uploaded', 'yes') === "yes") {
         up.style.display = "none";
         im.style.display = "flex";
-        var bin=parseInt(bin1)
-        var est=parseInt(est1)
-        binb=document.getElementById("bin_but");
-        if (bin<=25){
+        var bin = parseInt(bin1)
+        var est = parseInt(est1)
+        binb = document.getElementById("bin_but");
+        if (bin <= 25) {
             binb.style.background = "green";
             binb.innerText = "Low";
         }
-        if (bin>25){
+        if (bin > 25) {
             binb.style.background = "yellow";
             binb.innerText = "Medium";
         }
-        if (bin>50){
+        if (bin > 50) {
             binb.style.background = "orange";
             binb.innerText = "High";
         }
-        if (bin>75){
+        if (bin > 75) {
             binb.style.background = "red";
             binb.innerText = "Very High";
         }
-        estb=document.getElementById("est_but");
-        if (est<=25){
+        estb = document.getElementById("est_but");
+        if (est <= 25) {
             estb.style.background = "green";
             estb.innerText = "Low";
         }
-        if (est>25){
+        if (est > 25) {
             estb.style.background = "yellow";
             estb.innerText = "Medium";
         }
-        if (est>50){
+        if (est > 50) {
             estb.style.background = "orange";
             estb.innerText = "High";
         }
-        if (est>75){
+        if (est > 75) {
             estb.style.background = "red";
             estb.innerText = "Very High";
         }
@@ -152,7 +152,7 @@ function download(url) {
         }, 150);
     };
     a.addEventListener('click', clickHandler, false);
-     setTimeout(function () {
+    setTimeout(function () {
         a.click();
         document.body.removeChild(a);
     }, 2000);

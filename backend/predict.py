@@ -52,7 +52,7 @@ def predict(image_path):
     est_image[:, :, 0] = est_img
     # est_image = Image.fromarray(est_image)
     # est_image.save(est_image_url)
-    cv2.imwrite(est_image_url,est_image)
+    cv2.imwrite(est_image_url, est_image)
 
     # Convert estimated image to blue and save it
     bin_img = (numpy_data * 255).astype(numpy.float32)
@@ -60,7 +60,7 @@ def predict(image_path):
     bin_image[:, :, 0] = bin_img
     # bin_image = Image.fromarray(bin_image)
     # bin_image.save(bin_image_url)
-    cv2.imwrite(bin_image_url,bin_image)
+    cv2.imwrite(bin_image_url, bin_image)
 
     # Save output to dictionary
     output['est_water'] = round(water * 100 / image_cal.size, 2)
