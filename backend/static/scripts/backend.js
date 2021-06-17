@@ -141,18 +141,21 @@ function reset1() {
 
 }
 
-function download(e) {
-    var element = document.createElement('a');
-    element.setAttribute('href',
-        'data:text/plain;charset=utf-8, '
-        + encodeURIComponent(e));
-    element.setAttribute('download', e.split('/').pop());
-    document.body.appendChild(element);
-    setTimeout(function () {
-        element.click();
-        document.body.removeChild(element);
-    }, 2000); //will call the function after 2 secs.
-
+function download(url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = url.split('/').pop() || 'download';
+    const clickHandler = () => {
+        setTimeout(() => {
+            URL.revokeObjectURL(url);
+            this.removeEventListener('click', clickHandler);
+        }, 150);
+    };
+    a.addEventListener('click', clickHandler, false);
+     setTimeout(function () {
+        a.click();
+        document.body.removeChild(a);
+    }, 2000);
 }
 
 function reseth(e) {
@@ -163,10 +166,4 @@ function reseth(e) {
     if (e === "2") {
         element.classList.remove("fa-spin");
     }
-}
-
-function damage(bin,est) {
-    alert(bin)
-
-
 }

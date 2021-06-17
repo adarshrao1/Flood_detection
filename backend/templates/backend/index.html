@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
+
 <script type="text/javascript" src="{% static 'scripts/test.js' %}"></script>
 <head>
     <meta charset="utf-8">
@@ -11,6 +12,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'fonts/simple-line-icons.min.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
+    <style>
+        #switch {
+            border: 2px #2196F3;
+            background-color: white;
+            color: dodgerblue;
+            font-weight: bold;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #switch:hover {
+          background: #2196F3;
+          color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -27,8 +43,9 @@
                <main class="page landing-page">
         <section class="clean-block clean-hero" style="background-image:url({% static 'img/tech/image.jpg' %});color:rgba(9, 162, 255, 0.5); ">
             <div class="text">
-  <center><iframe id="camera_view" width="640" height="480"  src="http://192.168.29.244:8080/browserfs.html" frameborder="0" allowfullscreen style="z-index: 3"></iframe></center>
-            <button style="float: right" class="bg-transparent" onclick="switch_cam()">Switch Camera</button>
+                <iframe id="camera_view" width="640" height="360"  src="http://bit.do/floodvtol" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="z-index: -3;position:absolute;left: 18%;top: 20%;"></iframe>
+                <iframe id="map_view" width="400" height="360"  src="http://bit.do/floodvtol3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="z-index: -3;position:absolute;right: 10%;top: 20%;"></iframe>
+            <button id="switch" style="position:absolute;right: 40%;top: 75%;" onclick="switch_cam()">Switch Camera</button>
             </div>
 </section>
 
