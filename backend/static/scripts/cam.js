@@ -1,9 +1,9 @@
 function switch_cam() {
     let frame = document.getElementById("camera_view");
-    if (frame.src === "http://bit.do/floodvtol") {
-        frame.src = "http://bit.do/floodvtol2";
+    if (frame.src === "https://133r.short.gy/camera1") {
+        frame.src = "https://133r.short.gy/camera2";
     } else {
-        frame.src = "http://bit.do/floodvtol"
+        frame.src = "https://133r.short.gy/camera1"
     }
 }
 
