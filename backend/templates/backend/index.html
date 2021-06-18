@@ -45,14 +45,14 @@
 </nav><!-- End: Header White -->
 <main class="page landing-page">
     <section class="clean-block clean-hero"
-             style="background-image:url({% static 'img/tech/image.jpg' %});color:rgba(9, 162, 255, 0.5); ">
+             style="background-image:url({% static 'img/tech/image.jpg' %});color:rgba(9, 162, 255, 0.5); z-index: 1">
         <div class="text">
             <iframe id="camera_view" width="640" height="360" src="http://bit.do/floodvtol" frameborder="0"
                     allow="autoplay; encrypted-media" allowfullscreen
-                    style="z-index: -3;position:absolute;left: 18%;top: 20%;"></iframe>
+                    style="z-index: 3;position:absolute;left: 18%;top: 20%;"></iframe>
             <iframe id="map_view" width="400" height="360" src="http://bit.do/floodvtol3" frameborder="0"
                     allow="autoplay; encrypted-media" allowfullscreen
-                    style="z-index: -3;position:absolute;right: 10%;top: 20%;"></iframe>
+                    style="z-index: 3;position:absolute;right: 10%;top: 20%;"></iframe>
             <button id="switch" style="position:absolute;right: 40%;top: 75%;" onclick="switch_cam()">Switch Camera
             </button>
         </div>
