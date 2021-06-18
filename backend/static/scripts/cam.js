@@ -15,7 +15,6 @@ function test() {
     let iframe = document.getElementById("camera_view");
     let iframe2 = document.getElementById("map_view");
     if (check){
-
         iframe.style.height = (screen.width / 2) + 'px';
         iframe.style.width = (screen.width / 1.25) + 'px';
         iframe2.style.height = (screen.width / 2) + 'px';
@@ -26,5 +25,6 @@ function test() {
         iframe.style.width = (screen.width / 2.5) + 'px';
         iframe2.style.height = (screen.width / 4) + 'px';
         iframe2.style.width = (screen.width / 4) + 'px';
+
     }
 }

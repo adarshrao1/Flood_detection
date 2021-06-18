@@ -18,15 +18,20 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
             rel="stylesheet"
     />
+    <link rel="manifest" href="{% static 'icon/site.webmanifest' %}">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'templates/backend/style.css' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icon/favicon-16x16.png' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script type="text/javascript" src="{% static 'scripts/backend.js' %}"></script>
     <script
             type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"
     ></script>
-    <title>Admin Panel</title>
+    <title>VTOL - Flood Prediction</title>
 </head>
 <body onload="displayView({{ bin_water }},{{ est_water }})"
       style="background-image: linear-gradient(rgba(100,255,100,.5), rgba(255,100,255,.5)), url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg');">
