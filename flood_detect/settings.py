@@ -27,7 +27,7 @@ DEBUG = True
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net', 'localhost', '127.0.0.1', 'f5b66fb0e7b5.in.ngrok.io']
 
 # Application definition
 

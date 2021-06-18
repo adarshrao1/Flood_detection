@@ -1,0 +1,14 @@
+ #switch {
+            border: 2px #2196F3;
+            background-color: white;
+            color: dodgerblue;
+            font-weight: bold;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+#switch:hover {
+    background: #2196F3;
+    color: white;
+}
