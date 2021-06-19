@@ -24,10 +24,10 @@ SECRET_KEY = 'django-insecure-#^_mh9k+5fobx(p7r#@*r60klale$%7w^tf^@bus&-lje^1=(@
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net', 'localhost', '127.0.0.1', 'a15e8a3a48a6.in.ngrok.io']
+ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net', 'localhost', '127.0.0.1', '851961b1682a.in.ngrok.io']
 
 # Application definition
 

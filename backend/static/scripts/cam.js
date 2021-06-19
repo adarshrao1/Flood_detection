@@ -15,14 +15,15 @@ function test() {
     let iframe = document.getElementById("camera_view");
     let iframe2 = document.getElementById("map_view");
     if (check){
-        iframe.style.height = (screen.width / 2) + 'px';
-        iframe.style.width = (screen.width / 1.25) + 'px';
-        iframe2.style.height = (screen.width / 2) + 'px';
-        iframe2.style.width = (screen.width / 2) + 'px';
+        iframe.style.height = (screen.width / 2.045) + 'px';
+        iframe.style.width = (screen.width / 1.075) + 'px';
+        iframe2.style.height = (screen.width / 2.045) + 'px';
+        iframe2.style.width = (screen.width / 2.045) + 'px';
+        document.getElementById("switch_row").style.padding='4%';
     }
     else {
         iframe.style.height = (screen.width / 4) + 'px';
-        iframe.style.width = (screen.width / 2.5) + 'px';
+        iframe.style.width = (screen.width / 2.18) + 'px';
         iframe2.style.height = (screen.width / 4) + 'px';
         iframe2.style.width = (screen.width / 4) + 'px';
 
