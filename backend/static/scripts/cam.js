@@ -44,7 +44,7 @@ function map_check(url,height,space,width,op,flag) {
                 $("#map_view").attr("src", url);
             } else {
                 if(flag) {
-                    width = width / 1.2;
+                    width = width / 1.35;
                     $("#map_view").width(width);
                 }
                 else {
