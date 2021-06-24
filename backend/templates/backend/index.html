@@ -7,9 +7,15 @@
     <title>VTOL - Home</title>
     <link rel="manifest" href="{% static 'icon/site.webmanifest' %}">
     <script type="text/javascript" src="{% static 'scripts/cam.js' %}"></script>
-    <script>document.addEventListener("DOMContentLoaded", test, false);</script>
+    <script>document.addEventListener("DOMContentLoaded", device_check, false);</script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/indexstyle.css' %}">
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'icon/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'icon/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'icon/favicon-16x16.png' %}">
@@ -47,7 +53,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-auto" style="padding-top: 2%">
+            <div id="map_column" class="col-md-auto" style="padding-top: 2%">
                <iframe id="map_view" width="360" height="360" src="https://133r.short.gy/map" frameborder="0"
                     allow="autoplay; encrypted-media" allowfullscreen
                     ></iframe>
