@@ -50,7 +50,8 @@ function map_check(url,height,space,width,op,flag) {
                 else {
                     $("#map_column").css("padding-left","5%");
                 }
-                let html = "<body><div style='font-family: Viaoda Libre, cursive;font-size: large;text-align: center; margin-top: "+height/3+"px; line-height: "+height*space/10+"px;background: rgba(255, 255, 255, "+op+");border-radius: 10px;'>Livestream is not available at the moment.<br>" +
+                let html = "<body><div style='font-family:"+'"Montserrat"'+", sans-serif;, cursive;font-size: large;text-align: center; margin-top: "+height/3+"px; line-height: "+height*space/10+"px;background: rgba(255, 255, 255, "+op+");border-radius: 5px;box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);'>" +
+                    "Livestream is not available at the moment.<br>" +
                     "Playing last livestream recording.</div></body>";
                 $("#map_view").attr("src", 'data:text/html;charset=utf-8,' + encodeURI(html));
             }
