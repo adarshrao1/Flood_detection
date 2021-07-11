@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from backend.models import Image
+from backend.models import Image, Image2
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -27,4 +27,10 @@ class CreateUserForm(UserCreationForm):
 class ImageForm(ModelForm):
     class Meta:
         model = Image
+        fields = "__all__"
+
+
+class ImageForm2(ModelForm):
+    class Meta:
+        model = Image2
         fields = "__all__"

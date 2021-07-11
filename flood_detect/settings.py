@@ -27,7 +27,7 @@ DEBUG = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 # SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net']
+ALLOWED_HOSTS = ['flood-vtol.azurewebsites.net','localhost']
 
 # Application definition
 

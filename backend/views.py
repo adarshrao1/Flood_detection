@@ -1,5 +1,5 @@
-from backend.forms import ImageForm
-from backend.predict import predict
+from backend.forms import ImageForm, ImageForm2
+from backend.predict import predict, predict_com
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -56,10 +56,20 @@ def loginPage(request):
 def adminpage(request):
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES)
+        form2 = ImageForm2(request.POST, request.FILES)
         if form.is_valid():
-            image_obj = form.save()
-            image_url = image_obj.image.url
-            output = predict("." + image_url)
+            if form2.is_valid():
+                image_obj = form.save()
+                image_url = image_obj.image.url
+                image_obj2 = form2.save()
+                image2_url = image_obj2.image2.url
+                output = predict_com(("." + image_url), ("." + image2_url))
+                compare_flag = "Yes"
+            else:
+                image_obj = form.save()
+                image_url = image_obj.image.url
+                output = predict("." + image_url)
+                compare_flag = "No"
 
             est_water = output['est_water']
             est_land = output['est_land']
@@ -70,15 +80,39 @@ def adminpage(request):
             height = output['height']
             width = output['width']
 
-            return render(request, "backend/admin.html",
-                          {'form': form, 'imageURL': image_url, 'bin_water': bin_water, 'bin_land': bin_land,
-                           'est_water': est_water, 'est_land': est_land, 'est_image': est_image, 'bin_image': bin_image,
-                           'height': height, 'width': width, 'post': "Yes"})
+            if compare_flag == "No":
+                return render(request, "backend/admin.html",
+                              {'form': form, 'form2': form2, 'imageURL': image_url, 'bin_water': bin_water,
+                               'bin_land': bin_land,
+                               'est_water': est_water, 'est_land': est_land, 'est_image': est_image,
+                               'bin_image': bin_image,
+                               'height': height, 'width': width, 'post': "Yes", 'compare_flag': compare_flag})
+            else:
+                est_water_com = output['est_water_com']
+                est_land_com = output['est_land_com']
+                bin_water_com = output['bin_water_com']
+                bin_land_com = output['bin_land_com']
+                est_image_com = output['est_com']
+                bin_image_com = output['bin_com']
+                bin_water_diff = output['bin_water_diff']
+                est_water_diff = output['est_water_diff']
+                return render(request, "backend/admin.html",
+                              {'form': form, 'form2': form2, 'imageURL': image_url, 'bin_water': bin_water,
+                               'bin_land': bin_land, 'est_water': est_water, 'est_land': est_land,
+                               'est_image': est_image, 'bin_image': bin_image,
+                               'height': height, 'width': width, 'image2URL': image2_url,
+                               'bin_water_com': bin_water_com, 'bin_land_com': bin_land_com,
+                               'est_water_com': est_water_com, 'est_land_com': est_land_com,
+                               'est_image_com': est_image_com, 'bin_image_com': bin_image_com,
+                               'bin_water_diff': bin_water_diff, 'est_water_diff': est_water_diff,
+                               'post': "Yes", 'compare_flag': compare_flag})
+
         else:
-            print("problem!!!")
-        return render(request, "backend/admin.html", {'form': form, 'post': "No"})
+            print("Form is invalid.")
+        return render(request, "backend/admin.html", {'form': form, 'form2': form2, 'post': "No"})
     form = ImageForm
-    return render(request, "backend/admin.html", {'form': form, 'post': "No"})
+    form2 = ImageForm2
+    return render(request, "backend/admin.html", {'form': form, 'form2': form2, 'post': "No"})
 
 
 def logoutUser(request):

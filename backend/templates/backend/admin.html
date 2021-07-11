@@ -2,6 +2,12 @@
 <head>
     {% load static %}
     {{ post|json_script:"post" }}
+    {{ compare_flag|json_script:"compare_flag" }}
+    {{ bin_water|json_script:"bin_water" }}
+    {{ est_water|json_script:"est_water" }}
+    {{ est_water|json_script:"est_water" }}
+    {{ bin_water_diff|json_script:"bin_water_diff" }}
+    {{ est_water_diff|json_script:"est_water_diff" }}
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <!-- Font Awesome -->
     <link
@@ -32,7 +38,7 @@
     ></script>
     <title>VTOL - Flood Prediction</title>
 </head>
-<body onload="displayView({{ bin_water }},{{ est_water }})"
+<body onload="displayView()"
       style="background-image: linear-gradient(rgba(100,255,100,.5), rgba(255,100,255,.5)), url('https://images.pexels.com/photos/1903702/pexels-photo-1903702.jpeg');">
 <div id="upload">
     <br>
@@ -44,34 +50,49 @@
     <div id="upload1" class="vertical-center" style="text-align: center;">
         <form method="POST" enctype="multipart/form-data" class="md-form">
             {% csrf_token %}
-            <p style="font-size: xx-large; font-weight: bold">Select an image</p>
+            <div class="col justify-content-evenly">
+                <div class="row justify-content-evenly">
+            <p id="bef_title" style="font-size: xx-large; font-weight: bold">Select an image<br></p>
             <div class="wrapper">
                 <div class="file-upload" onmouseover="icon_color()" onmouseout="icon_color2()">
                     <input type="file" name="image" multiple required/>
                     <i id="ic" class="fa fa-arrow-up fa-sm"></i>
                 </div>
             </div>
-            <p><br>
-                <button class="glow-on-hover" type="submit">Submit</button>
-            </p>
+
+            </div>
+            <div class="row justify-content-evenly" id="compare" style="display: none;padding-top: 5%">
+            <p style="font-size: xx-large; font-weight: bold;">Select an After flood image<br></p>
+            <div class="wrapper">
+                <div class="file-upload" onmouseover="icon_color()" onmouseout="icon_color2()">
+                    <input type="file" name="image2"/>
+                    <i id="ic" class="fa fa-arrow-up fa-sm"></i>
+                </div>
+            </div>
+            </div>
+            <p style="padding: 3px"><br>
+            <button class="glow-on-hover" style="float: right;" type="submit">Submit</button>
+            <button id="compare_but" style="float: left;width: 250px;" type="button" class="go_back" onclick="show_compare()"><span>Add/Remove flood image</span>
+            </button>
+            </p><p><br></p>
             <p id="but" style="display: none;text-align: right;">
-                <button style="float: left" type="button" id="show_img" class="go_back" onclick="toggle()"><span>Show Output Images</span>
-                </button>
+            <button style="float: left" type="button" id="show_img" class="go_back" onclick="toggle()"><span>Show Output Images</span>
+            </button>
             </p>
             <p id="ret" style="display: none;text-align: right; padding-right: 30px;">
-                <button type="button" class="btn btn-danger" onclick="reset1()" onmouseover="reseth('1')"
+                <button type="button" id="reset_but" onclick="reset1()" onmouseover="reseth('1')"
                         onmouseout="reseth('2')"><i id="reseti" class="fas fa-sync" style="color: white;"></i>
                     Reset Page
                 </button>
             </p>
+        </div>
         </form>
     </div>
 </div>
-<div id="view" style="display: none; margin: auto;padding: 10px">
+<div id="view" class="container" style="display: none; margin: auto;padding: 10px">
     <div class="col">
         <div>
-            <p
-                    style="font-size: xx-large;font-weight: bold;text-align: center;color: white;">
+            <p style="font-size: xx-large;font-weight: bold;text-align: center;color: white;">
                 <button style="float: left" class="go_back" onclick="toggle()"><span>Go Back</span></button>
                 Prediction Output
             </p>
@@ -91,7 +112,7 @@
                             class="card-img-top hover-shadow"
                     />
                     <div class="card-body">
-                        <h5 class="card-title">Original Image</h5>
+                        <h5 id="bef_img_title" class="card-title">Original Image</h5>
                         <p class="card-text">
                             Size : {{ height }} x {{ width }} px
                         </p>
@@ -169,6 +190,101 @@
                         <button onclick="download('{{ est_image }}')" id="b3" class='btn_o'>Download <i
                                 class="fa fa-download"
                                 style="color: #09a2ff"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="comp" class="container" style="padding: 5px;display: none;margin: auto;">
+            <div class="row">
+                <div class="col">
+                    <div class="card h-100">
+                        <img
+                                alt="Comparison image"
+                                src="{{ image2URL }}"
+                                class="card-img-top hover-shadow"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">After Flood Image</h5>
+                            <p class="card-text">
+                                Size : {{ height }} x {{ width }} px
+                            </p>
+                        </div>
+                        <div class="card-footer" style="text-align: center;">
+                            <button onclick="download('{{ image2URL }}')" id="b1_com" class='btn_o'>Download <i
+                                    class="fa fa-download"
+                                    style="color: #09a2ff"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img
+                                alt="Comparison Binary image"
+                                src="{{ bin_image_com }}"
+                                class="card-img-top hover-shadow"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Comparison Binary Image</h5>
+                            <p class="card-text">
+                                Percentage of Water : {{ bin_water_com }}%<br>
+                                Percentage of Land : {{ bin_land_com }}%<br>
+                                <p id="comp_bin_text"></p>
+                                <b>Damage Level :
+                                    <button class="buttonl" id="bin_but_com"></button>
+                                </b>
+
+                            </p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ bin_water }}%"
+                                     aria-valuenow="{{ bin_water_com }}" aria-valuemin="0" aria-valuemax="100">
+                                    Water {{ bin_water_com }}%
+                                </div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ bin_land }}%"
+                                     aria-valuenow="{{ bin_land_com }}" aria-valuemin="0" aria-valuemax="100">
+                                    Land {{ bin_land_com }}%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="text-align: center;">
+                            <button onclick="download('{{ bin_image_com }}')" id="b2_com" class='btn_o'>Download <i
+                                    class="fa fa-download"
+                                    style="color: #09a2ff"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <img
+                                alt="Comparison Estimated image"
+                                src="{{ est_image_com }}"
+                                class="card-img-top hover-shadow"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Comparison Estimated Image</h5>
+                            <p class="card-text">
+                                Percentage of Water : {{ est_water_com }} %<br>
+                                Percentage of Land : {{ est_land_com }} %<br>
+                                <p id="comp_est_text"></p>
+                                <b>Damage Level :
+                                    <button class="buttonl" id="est_but_com"></button>
+                                </b>
+                            </p>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: {{ est_water }}%"
+                                     aria-valuenow="{{ est_water_com }}" aria-valuemin="0" aria-valuemax="100">
+                                    Water {{ est_water_com }}%
+                                </div>
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: {{ est_land }}%"
+                                     aria-valuenow="{{ est_land_com }}" aria-valuemin="0" aria-valuemax="100">
+                                    Land {{ est_land_com }}%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="text-align: center;">
+                            <button onclick="download('{{ est_image_com }}')" id="b3_com" class='btn_o'>Download <i
+                                    class="fa fa-download"
+                                    style="color: #09a2ff"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

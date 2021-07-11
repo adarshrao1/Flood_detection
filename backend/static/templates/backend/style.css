@@ -11,6 +11,7 @@
     background-color: white;
     width: 50%;
     margin: auto;
+    padding: 1%;
 }
 
 .wrapper {
@@ -296,4 +297,28 @@ i {
     padding: 10px;
     width: 100px;
     margin: 5px;
+}
+
+#reset_but{
+    border-radius: 40px;
+    background-color: darkred;
+    box-shadow: 0 5px 10px -5px gray;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 10px;
+    width: 140px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#reset_but span {
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
 }
